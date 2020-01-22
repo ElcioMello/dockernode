@@ -15,9 +15,6 @@ pipeline {
         }
         stage('Unit Test') { 
             steps {
-                sh 'set -x'
-                sh 'npm install --save-dev cross-env'
-                sh 'set +x'
                 sh 'ls'
                 sh 'npm test' 
             }
