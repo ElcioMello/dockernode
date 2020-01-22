@@ -33,7 +33,7 @@ pipeline {
         stage('Build e Push Docker') {
             agent {
                 docker {
-                    image 'docker:latest'
+                    image 'docker/compose:latest'
                 }
             }
             steps {
