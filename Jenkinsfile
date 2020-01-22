@@ -31,11 +31,7 @@ pipeline {
             }
         }
         stage('Build e Push Docker') {
-            agent {
-                docker {
-                    image 'docker/compose:latest'
-                }
-            }
+            agent none
             steps {
                 sh 'ls'
                 sh 'docker images'
