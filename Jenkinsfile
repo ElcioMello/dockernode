@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Install') { 
             steps {
-                sh 'apt get update'
+                sh 'npm install -g azure-cli'
                 sh 'node --version'
                 sh 'npm --version'
                 sh 'npm install' 
@@ -22,7 +22,7 @@ pipeline {
         }
         stage('Build') { 
             steps {
-                sh 'az --version'
+                sh 'azure --version'
                 
             }
         }
