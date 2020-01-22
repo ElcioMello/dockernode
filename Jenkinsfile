@@ -7,7 +7,7 @@ pipeline {
         stage('Install') {
             agent {
                 docker {
-                    image 'node:13.6.0-alpine'
+                    image 'node:6-alpine'
                     args '-p 3000:3000 -p 5000:5000' 
                 }
             }
