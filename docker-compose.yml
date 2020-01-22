@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  dockernode:
+    build: .
+    image: dockernode
+    container_name: dockernodey
+    command: npm start
+    ports:
+      - "3000:3000"
+    volumes: 
+      - .:/usr/app
