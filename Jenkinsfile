@@ -1,14 +1,16 @@
 pipeline {
     agent {
         docker {
-            image 'node:13.6.0' 
+            image 'mcr.microsoft.com/azure-cli' 
             args '-p 3000:3000' 
         }
     }
     stages {
         stage('Install') { 
             steps {
+                
                 sh 'node --version'
+                sh 'npm install -g azure-cli'
                 sh 'npm --version'
                 sh 'npm install' 
             }
