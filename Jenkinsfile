@@ -6,6 +6,11 @@ pipeline {
         }
     }
     stages {
+        stage('Unit Test') { 
+            steps {
+                sh 'npm test' 
+            }
+        }
         stage('Build') { 
             steps {
                 sh 'npm install' 
