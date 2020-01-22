@@ -5,6 +5,11 @@ pipeline {
             args '-p 3000:3000' 
         }
     }
+    stage('Install') { 
+            steps {
+                sh 'npm install' 
+            }
+        }
     stages {
         stage('Unit Test') { 
             steps {
@@ -13,7 +18,7 @@ pipeline {
         }
         stage('Build') { 
             steps {
-                sh 'npm install' 
+                echo 'Building..' 
             }
         }
     }
