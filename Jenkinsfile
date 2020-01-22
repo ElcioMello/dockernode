@@ -21,8 +21,11 @@ pipeline {
         }
         stage('Build') { 
             steps {
-                echo 'Building..' 
+                sh 'curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash'
+                sh 'az --version'
+                
             }
         }
+
     }
 }
