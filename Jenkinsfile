@@ -31,6 +31,7 @@ pipeline {
             }
         }
         stage('Build e Push Docker') {
+            agent {dockerfile true}
             steps {
                 sh 'ls'
                 sh 'docker images'
