@@ -30,7 +30,7 @@ pipeline {
         stage('Build') {
             agent {
                 docker {
-                    image 'mcr.microsoft.com/azure-cli'
+                    image 'mcr.microsoft.com/azure-cli:2.0'
                 }
             }
             steps {
