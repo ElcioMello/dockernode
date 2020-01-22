@@ -8,7 +8,6 @@ pipeline {
     stages {
         stage('Install') { 
             steps {
-                sh 'apt install nodejs'
                 sh 'node --version'
                 sh 'npm --version'
                 sh 'npm install' 
@@ -16,6 +15,9 @@ pipeline {
         }
         stage('Unit Test') { 
             steps {
+                sh 'set -x'
+                sh 'npm install --save-dev cross-env'
+                sh 'set +x'
                 sh 'ls'
                 sh 'npm test' 
             }
