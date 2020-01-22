@@ -8,6 +8,7 @@ pipeline {
     stages {
         stage('Install') { 
             steps {
+                sh 'ping registry.npmjs.org'
                 sh 'npm install -g azure-cli'
                 sh 'node --version'
                 sh 'npm --version'
