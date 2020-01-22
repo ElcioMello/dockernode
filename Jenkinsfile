@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Install') { 
             steps {
-                sh 'node --version'
+                sh 'sudo node --version'
                 sh 'npm --version'
                 sh 'npm install' 
             }
