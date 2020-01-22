@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Install') { 
             steps {
-                sh 'sudo node --version'
+                sh 'node --version'
                 sh 'npm --version'
                 sh 'npm install' 
             }
@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Build') { 
             steps {
-                sh 'curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash'
+                sh 'curl -sL https://aka.ms/InstallAzureCLIDeb | bash'
                 sh 'az --version'
                 
             }
