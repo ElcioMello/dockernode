@@ -22,7 +22,6 @@ pipeline {
         stage('Build') { 
             steps {
                 sh 'az --version'
-                sh 'az --version'
                 
             }
         }
