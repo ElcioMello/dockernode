@@ -38,13 +38,8 @@ pipeline {
             }
             steps {
                 sh 'ls'
-                sh 'docker images'
                 sh 'docker-compose up -d'
-                sh 'docker images'
-                sh 'docker ps'
                 sh 'docker-compose down'
-                sh 'docker tag dockernode mycontainerregelcio01.azurecr.io/dockernode:v1'
-                sh 'docker push mycontainerregelcio01.azurecr.io/dockernode:v1'
                
             }
         }
