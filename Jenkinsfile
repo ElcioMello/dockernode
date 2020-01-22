@@ -6,12 +6,11 @@ pipeline {
             agent {
                 docker {
                     image 'mcr.microsoft.com/azure-cli'
+                    args '--user root'
                 }
             }
             steps {
                 sh 'id'
-                sh 'chmod -R 777 /home/pzerger/.azure/config'
-                sh 'chmod -R 777 /home/pzerger/.azure'
                 sh 'az --version'
 
             }
