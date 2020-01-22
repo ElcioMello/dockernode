@@ -34,7 +34,6 @@ pipeline {
             agent {
                 docker {
                     image 'docker:latest'
-                    args '--user root'
                 }
             }
             steps {
