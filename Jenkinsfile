@@ -11,7 +11,6 @@ pipeline {
             steps {
                 
                 sh 'node --version'
-                sh 'npm install -g azure-cli'
                 sh 'npm --version'
                 sh 'npm install' 
             }
