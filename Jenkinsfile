@@ -30,21 +30,20 @@ pipeline {
                 sh 'npm test'
             }
         }
-        stage('Build') {
+        stage('Build e Push Docker') {
             agent {
                 docker {
-                    image 'mcr.microsoft.com/azure-cli'
+                    image 'docker:latest'
                     args '--user root'
                 }
             }
             steps {
                 sh 'ls'
-                 sh 'docker images'
+                sh 'docker images'
                 sh 'docker-compose up -d'
                 sh 'docker images'
                 sh 'docker ps'
                 sh 'docker-compose down'
-                sh 'az acr login --name mycontainerregelcio01'
                 sh 'docker tag dockernode mycontainerregelcio01.azurecr.io/dockernode:v1'
                 sh 'docker push mycontainerregelcio01.azurecr.io/dockernode:v1'
                
