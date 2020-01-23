@@ -7,7 +7,7 @@ pipeline {
         stage('Install') {
             agent {
                 docker {
-                    image 'node:13.6.0-alpine'
+                    image 'node:alpine'
                     args '-p 3000:3000 -p 5000:5000 --user root'
                 }
             }
@@ -21,7 +21,7 @@ pipeline {
         stage('Unit Test') {
             agent {
                 docker {
-                    image 'node:13.6.0-alpine'
+                    image 'node:alpine'
                     args '-p 3000:3000 -p 5000:5000 --user root'
                 }
             }
