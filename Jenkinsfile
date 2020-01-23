@@ -30,10 +30,24 @@ pipeline {
                 sh 'npm test'
             }
         }
-        stage('Build e Push Docker') {
+        stage('Build a Image(compose)') {
            agent any
             steps {
+                sh 'docker images'
+                sh 'docker-compose up -d'
+                sh 'docker images'
                 sh 'docker ps'
+                sh 'docker-compose down'
+                
+               
+            }
+        }
+
+        stage('teste image') {
+           agent any
+            steps {
+                sh 'docker images'
+                
                
             }
         }
