@@ -33,6 +33,7 @@ pipeline {
         stage('Build a Image(compose)') {
             agent any
             steps {
+                sh 'ls'
                 sh 'docker images'
                 sh 'docker build -t dockernode .'
                 sh 'docker images'
