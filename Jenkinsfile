@@ -41,11 +41,13 @@ pipeline {
             }
         }
 
-        stage('teste image') {
+        stage('Tag nad Push  Image') {
            agent any
             steps {
                 sh 'docker images'
-                
+                sh 'docker tag dockernode mycontainerregelcio01.azurecr.io/dockernode:v1'
+                sh 'docker images'
+                sh 'docker push mycontainerregelcio01.azurecr.io/dockernode:v1'
                
             }
         }
