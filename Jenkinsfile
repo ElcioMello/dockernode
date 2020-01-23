@@ -73,7 +73,6 @@ pipeline {
             steps {
                 sh 'az --version'
                 sh 'az aks install-cli'
-                sh 'kubectl get nodes'
                 sh 'kubectl apply -f azure-dockernode.yaml'
             }
         }
