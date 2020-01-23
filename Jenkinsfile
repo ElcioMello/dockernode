@@ -81,7 +81,7 @@ pipeline {
             }
             steps {
                 sh 'az --version'
-                sh 'az aks install-cli'
+                sh 'echo "login"'
                 withCredentials([azureServicePrincipal(credentialsId: 'AzureLogin',
                                     subscriptionIdVariable: 'SUBS_ID',
                                     clientIdVariable: 'CLIENT_ID',
@@ -89,8 +89,11 @@ pipeline {
                                     tenantIdVariable: 'TENANT_ID')]) {
                                         sh 'az login --service-principal -u $CLIENT_ID --password $CLIENT_SECRET --tenant $TENANT_ID'
                                     }
-                sh 'az acr list --resource-group myResourceGroup --query "[].{acrLoginServer:loginServer}" --output'
+                sh 'az aks install-cli'
+                
+                sh 'az acr list --resource-group myResourceGroup --query "[].{acrLoginServer:loginServer}" --output table'
                 sh 'kubectl apply -f azure-dockernode.yaml'
+                sh 'kubectl get service azure-vote-front'
             }
         }
 
