@@ -4,8 +4,6 @@ WORKDIR /usr/app
 
 COPY package*.json ./
 
-RUN npm cache clean
-
 RUN npm install
 
 COPY . .
