@@ -93,7 +93,7 @@ pipeline {
                 
                 sh 'az acr list --resource-group myResourceGroup --query "[].{acrLoginServer:loginServer}" --output table'
                 sh 'kubectl apply -f azure-dockernode.yaml'
-                sh 'kubectl get service azure-vote-front'
+                sh 'kubectl get service dockernode'
             }
         }
 
