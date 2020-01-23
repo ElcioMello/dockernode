@@ -90,7 +90,7 @@ pipeline {
                                         sh 'az login --service-principal -u $CLIENT_ID --password $CLIENT_SECRET --tenant $TENANT_ID'
                                     }
                 sh 'az aks install-cli'
-                
+                sh 'az aks get-credentials --resource-group myResourceGroup --name myAKSCluster'
                 sh 'az acr list --resource-group myResourceGroup --query "[].{acrLoginServer:loginServer}" --output table'
                 sh 'kubectl apply -f azure-dockernode.yaml'
                 sh 'kubectl get service dockernode'
