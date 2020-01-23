@@ -8,7 +8,7 @@ pipeline {
             agent {
                 docker {
                     image 'node:alpine'
-                    args '-p 3000:3000 -p 5000:5000'
+                    args '-p 3000:3000 -p 5000:5000 --add-host="registry.npmjs.org npmjs.org registry.npmjs.com npmjs.com:104.16.110.30"'
                 }
             }
             steps {
@@ -22,7 +22,7 @@ pipeline {
             agent {
                 docker {
                     image 'node:alpine'
-                    args '-p 3000:3000 -p 5000:5000 --user root'
+                    args '-p 3000:3000 -p 5000:5000 --user root --add-host="registry.npmjs.org npmjs.org registry.npmjs.com npmjs.com:104.16.110.30"'
                 }
             }
             steps {
