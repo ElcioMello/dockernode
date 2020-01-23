@@ -34,9 +34,6 @@ pipeline {
             agent any
             steps {
                 sh 'ls'
-                sh ' rm -rf node_modules'
-                sh ' rm -rf package-lock.json'
-                sh 'ls'
                 sh 'docker images'
                 sh 'docker build -t dockernode .'
                 sh 'docker images'
