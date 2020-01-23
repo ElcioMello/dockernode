@@ -47,6 +47,7 @@ pipeline {
             steps {
                 sh 'docker images'
                 sh 'docker tag dockernode mycontainerregelcio01.azurecr.io/dockernode:v1'
+                sh 'docker image prune --all'
                 sh 'docker images'
                 
                 withCredentials([azureServicePrincipal(credentialsId: 'AzureTeste',
