@@ -41,7 +41,7 @@ pipeline {
             }
         }
 
-        stage('Tag and login') {
+        stage('Tag and Login') {
            agent any
             steps {
                 sh 'docker images'
@@ -52,9 +52,9 @@ pipeline {
             }
         }
 
-         
+       
 
-         stage('Push Image') {
+         stage('Push  Image') {
            agent any
             steps {
                 sh 'docker images'
@@ -63,12 +63,21 @@ pipeline {
             }
         }
 
-        stage('Aply Azure YAML') {
-           agent any
-            steps {
-                sh 'kubectl apply -f azure-dockernode.yaml'
-               
+          stage('Aply Azure Yaml') {
+           agent {
+                docker {
+                    image 'mcr.microsoft.com/azure-cli'
+                    args '-p 3000:3000 -p 5000:5000 --user root' 
+                }
             }
+            steps {
+                sh 'az --version'
+                sh 'az aks install-cli'
+                sh 'kubectl get nodes'
+                sh 'kubectl apply -f azure-dockernode.yaml'
+
+        }
+                
         }
 
     }
