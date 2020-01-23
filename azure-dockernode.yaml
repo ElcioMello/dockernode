@@ -18,7 +18,7 @@ spec:
         "beta.kubernetes.io/os": linux
       containers:
       - name: dockernode
-        image: mycontainerregelcio01.azurecr.io/dockernode:v1
+        image: mycontainerregelcio01.azurecr.io/dockernode:v2
         ports:
         - containerPort: 3000
         resources:
