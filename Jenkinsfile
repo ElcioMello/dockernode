@@ -7,7 +7,7 @@ pipeline {
         stage('Install') {
             agent {
                 docker {
-                    image 'node:13.6.0-alpine'
+                    image 'node:alpine'
                     args '-p 3000:3000 -p 5000:5000 --user root'
                 }
             }
@@ -15,7 +15,6 @@ pipeline {
                 sh 'ls'
                 sh 'node --version'
                 sh 'npm --version'
-                sh 'npm rebuild'
                 sh 'npm install'
             }
         }
