@@ -8,7 +8,7 @@ pipeline {
             agent {
                 docker {
                     image 'node:13.6.0-alpine'
-                    args '-p 3000:3000 -p 5000:5000 --user root' 
+                    args '-p 3000:3000 -p 5000:5000 --user root'
                 }
             }
             steps {
@@ -22,7 +22,7 @@ pipeline {
             agent {
                 docker {
                     image 'node:13.6.0-alpine'
-                    args '-p 3000:3000 -p 5000:5000 --user root' 
+                    args '-p 3000:3000 -p 5000:5000 --user root'
                 }
             }
             steps {
@@ -31,43 +31,43 @@ pipeline {
             }
         }
         stage('Build a Image(compose)') {
-           agent any
+            agent any
             steps {
                 sh 'docker images'
                 sh 'docker build -t dockernode .'
                 sh 'docker images'
-                
-               
+
+
             }
         }
 
         stage('Tag and Login') {
-           agent any
+            agent any
             steps {
                 sh 'docker images'
                 sh 'docker tag dockernode mycontainerregelcio01.azurecr.io/dockernode:v1'
                 sh 'docker images'
                 sh 'docker login mycontainerregelcio01.azurecr.io -u mycontainerregelcio01 -p EjrxA/Mo0cFehFAkE2MDggMeHy9SHfxu'
-               
+
             }
         }
 
-       
 
-         stage('Push  Image') {
-           agent any
+
+        stage('Push  Image') {
+            agent any
             steps {
                 sh 'docker images'
                 sh 'docker push mycontainerregelcio01.azurecr.io/dockernode:v1'
-               
+
             }
         }
 
-          stage('Aply Azure Yaml') {
-           agent {
+        stage('Aply Azure Yaml') {
+            agent {
                 docker {
                     image 'mcr.microsoft.com/azure-cli'
-                    args '-p 3000:3000 -p 5000:5000 --user root' 
+                    args '-p 3000:3000 -p 5000:5000 --user root'
                 }
             }
             steps {
@@ -75,10 +75,9 @@ pipeline {
                 sh 'az aks install-cli'
                 sh 'kubectl get nodes'
                 sh 'kubectl apply -f azure-dockernode.yaml'
+            }
+        }
 
-        }
-                
-        }
 
     }
 }
