@@ -60,7 +60,7 @@ pipeline {
             }
             steps {
                 sh 'az --version'
-                sh 'az acr login --name mycontainerregelcio01'
+                
                 
                
             }
