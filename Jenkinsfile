@@ -17,7 +17,7 @@ pipeline {
                 sh 'npm --version'
                 sh 'rm package-lock.json'
                 sh 'rm -r node_modules'
-                sh 'npm cache clean --force'
+                sh 'ls'
                 sh 'npm rebuild'
                 sh 'npm install'
             }
