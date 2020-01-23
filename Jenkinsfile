@@ -35,7 +35,7 @@ pipeline {
             steps {
                 sh 'ls'
                 sh 'docker images'
-                sh 'docker build -t dockernode .'
+                sh 'docker build --add-host="registry.npmjs.org npmjs.org registry.npmjs.com npmjs.com:104.16.110.30" -t dockernode .'
                 sh 'docker images'
 
 
