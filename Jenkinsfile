@@ -8,7 +8,7 @@ pipeline {
             agent {
                 docker {
                     image 'node:13.6.0-alpine'
-                    args '-p 3000:3000 -p 5000:5000' 
+                    args '-p 3000:3000 -p 5000:5000 --user root' 
                 }
             }
             steps {
@@ -22,7 +22,7 @@ pipeline {
             agent {
                 docker {
                     image 'node:13.6.0-alpine'
-                    args '-p 3000:3000 -p 5000:5000' 
+                    args '-p 3000:3000 -p 5000:5000 --user root' 
                 }
             }
             steps {
@@ -31,15 +31,9 @@ pipeline {
             }
         }
         stage('Build e Push Docker') {
-            agent {
-                docker {
-                    image 'docker'
-                    args '--user root'
-                }
-            }
+           
             steps {
                 sh 'ls'
-                sh 'apt-get update'
                
             }
         }
