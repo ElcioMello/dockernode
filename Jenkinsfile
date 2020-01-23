@@ -47,24 +47,12 @@ pipeline {
                 sh 'docker images'
                 sh 'docker tag dockernode mycontainerregelcio01.azurecr.io/dockernode:v1'
                 sh 'docker images'
+                sh 'docker login mycontainerregelcio01.azurecr.io -u mycontainerregelcio01 -p EjrxA/Mo0cFehFAkE2MDggMeHy9SHfxu'
                
             }
         }
 
-         stage('Autenticar Azure') {
-           agent {
-                docker {
-                    image 'mcr.microsoft.com/azure-cli'
-                    args '-p 3000:3000 -p 5000:5000 --user root' 
-                }
-            }
-            steps {
-                sh 'az --version'
-                
-                
-               
-            }
-        }
+         
 
          stage('Push  Image') {
            agent any
