@@ -47,8 +47,8 @@ pipeline {
                 sh 'docker images'
                 sh 'docker tag dockernode mycontainerregelcio01.azurecr.io/dockernode:v1'
                 sh 'docker images'
-                sh 'docker login mycontainerregelcio01.azurecr.io -u mycontainerregelcio01 -p EjrxA/Mo0cFehFAkE2MDggMeHy9SHfxu'
-
+                sh 'docker rmi $(docker images -f \'dangling=true\' -q)'
+                
             }
         }
 
