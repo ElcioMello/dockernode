@@ -31,7 +31,7 @@ pipeline {
             }
         }
         stage('Build e Push Docker') {
-           agent { any }
+           agent any
             steps {
                 sh 'ls'
                
