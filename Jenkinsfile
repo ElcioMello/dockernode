@@ -47,7 +47,13 @@ pipeline {
                 sh 'docker images'
                 sh 'docker tag dockernode mycontainerregelcio01.azurecr.io/dockernode:v1'
                 sh 'docker images'
-                sh 'docker rmi $(docker images -f \'dangling=true\' -q)'
+                withCredentials([azureServicePrincipal(credentialsId: 'AzureServicePrincipal',
+                                    subscriptionIdVariable: 'SUBS_ID',
+                                    clientIdVariable: 'CLIENT_ID',
+                                    clientSecretVariable: 'CLIENT_SECRET',
+                                    tenantIdVariable: 'TENANT_ID')]) {
+        sh 'docker login mycontainerregelcio01.azurecr.io -u $CLIENT_ID -p $CLIENT_SECRET'
+    }
                
                 
             }
