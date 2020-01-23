@@ -41,7 +41,7 @@ pipeline {
             }
         }
 
-        stage('Tag  Image') {
+        stage('Tag and login') {
            agent any
             steps {
                 sh 'docker images'
@@ -54,11 +54,19 @@ pipeline {
 
          
 
-         stage('Push  Image') {
+         stage('Push Image') {
            agent any
             steps {
                 sh 'docker images'
                 sh 'docker push mycontainerregelcio01.azurecr.io/dockernode:v1'
+               
+            }
+        }
+
+        stage('Aply Azure YAML') {
+           agent any
+            steps {
+                sh 'kubectl apply -f azure-dockernode.yaml'
                
             }
         }
