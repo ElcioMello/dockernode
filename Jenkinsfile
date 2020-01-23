@@ -34,10 +34,8 @@ pipeline {
            agent any
             steps {
                 sh 'docker images'
-                sh 'docker-compose up -d'
+                sh 'docker build -t dockernode .'
                 sh 'docker images'
-                sh 'docker ps'
-                sh 'docker-compose down'
                 
                
             }

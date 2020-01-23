@@ -4,7 +4,7 @@ services:
   dockernode:
     build: .
     image: dockernode
-    container_name: dockernodey
+    container_name: dockernode
     command: npm start
     ports:
       - "3000:3000"
