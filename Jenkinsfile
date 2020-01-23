@@ -81,6 +81,14 @@ pipeline {
             steps {
                 sh 'az --version'
                 sh 'az aks install-cli'
+                withCredentials([azureServicePrincipal(credentialsId: 'AzureLogin',
+                                    subscriptionIdVariable: 'SUBS_ID',
+                                    clientIdVariable: 'CLIENT_ID',
+                                    clientSecretVariable: 'CLIENT_SECRET',
+                                    tenantIdVariable: 'TENANT_ID')]) {
+                                        sh 'az login --service-principal -u $CLIENT_ID --password $CLIENT_SECRET --tenant $TENANT_ID'
+                                    }
+                sh 'az acr list --resource-group myResourceGroup --query "[].{acrLoginServer:loginServer}" --output'
                 sh 'kubectl apply -f azure-dockernode.yaml'
             }
         }
