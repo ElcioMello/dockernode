@@ -46,7 +46,6 @@ pipeline {
             agent any
             steps {
 
-                echo '${BUILD_TAG}'
                 sh 'docker images'
                 sh 'docker tag dockernode mycontainerregelcio01.azurecr.io/dockernode:v2'
                 sh 'docker image prune --all'
