@@ -47,7 +47,7 @@ pipeline {
             steps {
                 echo "current build number: ${currentBuild.number}"
                 sh 'docker images'
-                sh 'docker tag dockernode mycontainerregelcio01.azurecr.io/dockernode:${currentBuild.number}'
+                sh "docker tag dockernode mycontainerregelcio01.azurecr.io/dockernode:${currentBuild.number}"
                 sh 'docker image prune --all'
                 sh 'docker images'
                 
