@@ -47,7 +47,7 @@ pipeline {
             steps {
                 echo "current build number: ${currentBuild.number}"
                 sh 'docker images'
-                sh "docker tag dockernode mycontainerregelcio01.azurecr.io/dockernode:${currentBuild.number}"
+                sh "docker tag dockernode mycontainerregelcio01.azurecr.io/dockernode:v${currentBuild.number}"
                 sh 'docker image prune --all'
                 sh 'docker images'
                 
@@ -69,7 +69,7 @@ pipeline {
             agent any
             steps {
                 sh 'docker images'
-                sh 'docker push mycontainerregelcio01.azurecr.io/dockernode:v2'
+                sh "docker push mycontainerregelcio01.azurecr.io/dockernode:v${currentBuild.number}"
 
             }
         }
@@ -94,6 +94,7 @@ pipeline {
                 sh 'az aks install-cli'
                 sh 'az aks get-credentials --resource-group myResourceGroup --name myAKSCluster'
                 sh 'az acr list --resource-group myResourceGroup --query "[].{acrLoginServer:loginServer}" --output table'
+                sh "sed 's/changetextversion/v${currentBuild.number}/g' azure-dockernode.yaml"
                 sh 'kubectl apply -f azure-dockernode.yaml'
                 sh 'kubectl get service dockernode'
                 sh 'kubectl get pods'
