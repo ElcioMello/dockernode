@@ -69,7 +69,7 @@ pipeline {
             steps {
                 sh 'docker images'
                 sh "docker push mycontainerregelcio01.azurecr.io/dockernode:v${currentBuild.number}"
-                sh 'docker image prune --all -f'
+                sh "docker rmi $(docker images -f “dangling=true” -q)"
                 sh 'docker images'
 
             }
