@@ -45,7 +45,7 @@ pipeline {
         stage('Tag and Login') {
             agent any
             steps {
-                
+                echo "current build number: ${currentBuild.number}"
                 sh 'docker images'
                 sh 'docker tag dockernode mycontainerregelcio01.azurecr.io/dockernode:v2'
                 sh 'docker image prune --all'
@@ -96,6 +96,7 @@ pipeline {
                 sh 'az acr list --resource-group myResourceGroup --query "[].{acrLoginServer:loginServer}" --output table'
                 sh 'kubectl apply -f azure-dockernode.yaml'
                 sh 'kubectl get service dockernode'
+                sh 'kubectl get pods'
             }
         }
 
