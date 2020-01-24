@@ -86,8 +86,7 @@ pipeline {
                 sh 'az aks get-credentials --resource-group myResourceGroup --name myAKSCluster'
                 sh 'az acr list --resource-group myResourceGroup --query "[].{acrLoginServer:loginServer}" --output table'
                 sh "sed 's/changetextversion/v${currentBuild.number}/g' azure-dockernode.yaml"
-                sh 'kubectl apply -f azure-dockernode.yaml'
-                sh 'kubectl get service dockernode'
+                
                 sh 'kubectl get pods'
                 sh "kubectl set image deployment dockernode dockernode=mycontainerregelcio01.azurecr.io/dockernode:v${currentBuild.number}"
                 sh 'kubectl get service dockernode'
