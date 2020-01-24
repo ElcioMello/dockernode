@@ -45,16 +45,7 @@ pipeline {
         stage('Tag and Login') {
             agent any
             steps {
-                script {
-                    def version = readFile('VERSION')
-                    def versions = version.split('\\.')
-                    def major = versions[0]
-                    def minor = versions[0] + '.' + versions[1]
-                    def patch = version.trim()
-                    
-                    echo 'version'
-                    }
-
+                
                 sh 'docker images'
                 sh 'docker tag dockernode mycontainerregelcio01.azurecr.io/dockernode:v2'
                 sh 'docker image prune --all'
