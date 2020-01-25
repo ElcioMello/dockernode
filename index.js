@@ -7,7 +7,7 @@ const app = express()
 
 app.get('/',(req,res) => {
 
-    res.send('Hello World hook 2!')
+    res.send('Hello World hook!')
 })
 
 app.listen(PORT,HOST)
