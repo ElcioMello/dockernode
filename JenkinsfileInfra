@@ -19,14 +19,14 @@ pipeline {
                     clientSecretVariable: 'CLIENT_SECRET',
                     tenantIdVariable: 'TENANT_ID')]) {
                     sh 'az login --service-principal -u $CLIENT_ID --password $CLIENT_SECRET --tenant $TENANT_ID'
-                }
+                
                 sh 'az aks install-cli'
                 sh 'az group create --name myResourceGroup --location eastus'
                 sh 'az acr create --resource-group myResourceGroup --name mycontainerregelcio01 --sku Basic' 
-                sh 'az aks create --resource-group myResourceGroup --name myAKSCluster --node-count 2 --generate-ssh-keys --attach-acr mycontainerregelcio01 --service-principal  --client-secret $CLIENT_SECRET'
+                sh 'az aks create --resource-group myResourceGroup --name myAKSCluster --node-count 2 --attach-acr mycontainerregelcio01 --service-principal  --client-secret $CLIENT_SECRET'
                 sh 'az aks get-credentials --resource-group myResourceGroup --name myAKSCluster'
                 sh 'kubectl get nodes'
-                
+                }
                 
             }
         }
