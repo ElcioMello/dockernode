@@ -23,7 +23,7 @@ pipeline {
                 sh 'az aks install-cli'
                 sh 'az group create --name myResourceGroup --location eastus'
                 sh 'az acr create --resource-group myResourceGroup --name mycontainerregelcio01 --sku Basic' 
-                sh 'az aks create --resource-group myResourceGroup --name myAKSCluster --node-count 2 --attach-acr mycontainerregelcio01 --subscription $SUBS_ID --generate-ssh-keys --service-principal $CLIENT_ID --client-secret $CLIENT_SECRET'
+                sh 'az aks create --resource-group myResourceGroup --name myAKSCluster --node-count 2 --attach-acr mycontainerregelcio01 --subscription $SUBS_ID --no-ssh-key --service-principal $CLIENT_ID --client-secret $CLIENT_SECRET'
                 sh 'az aks get-credentials --resource-group myResourceGroup --name myAKSCluster'
                 sh 'kubectl get nodes'
                 }
