@@ -50,6 +50,7 @@ pipeline {
                     tenantIdVariable: 'TENANT_ID')]) {
                     sh 'docker login mycontainerregelcio01.azurecr.io -u $CLIENT_ID -p $CLIENT_SECRET'
                 }
+
                 sh 'docker images'
 
             }
@@ -88,6 +89,7 @@ pipeline {
                 sh "sed 's/changetextversion/v${currentBuild.number}/g' azure-dockernode.yaml"
                 
                 sh 'kubectl get pods'
+                sh 'kubectl apply -f azure-dockernode.yaml'
                 sh "kubectl set image deployment dockernode dockernode=mycontainerregelcio01.azurecr.io/dockernode:v${currentBuild.number}"
                 sh 'kubectl get service dockernode'
                 sh 'kubectl get pods'
